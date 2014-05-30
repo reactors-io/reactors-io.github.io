@@ -1,7 +1,7 @@
 ---
 layout: projdefault
 projectname: Reactive Collections
-projectpath: reactive-collections
+projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Contributing
 permalink: /contribute/index.html

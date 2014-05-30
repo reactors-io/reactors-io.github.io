@@ -1,7 +1,7 @@
 ---
 layout: projdefault
 projectname: Reactive Collections
-projectpath: reactive-collections
+projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Reactive Collections 0.4 Documentation
 permalink: /docs/0.4/index.html
