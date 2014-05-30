@@ -14,7 +14,7 @@ permalink: /learn/index.html
 
 ### Reactive Collections 0.4
 
-- Reactive Collections Documentation -- [HTML](/reactive-collections/docs/0.4/)
+- Reactive Collections Documentation -- [HTML](/docs/0.4/)
 - API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/final/reactive-collections/0.4/api)
 
 
