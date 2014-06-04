@@ -9,8 +9,6 @@ permalink: /discuss/index.html
 
 
 
-Reactive Collections on social networks:
-
 <table>
 <tr>
 
