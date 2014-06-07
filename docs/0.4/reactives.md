@@ -233,4 +233,24 @@ A higher-order reactive can have a type like:
 
     Reactive[Reactive[T]]
 
+There are multiple ways to access the events of type `T` from the inner reactive values.
+We might be interested in the events from the last `Reactive[T]` produced in the higher-order reactive.
+To access them, we use the `mux` operator -- this operator multiplexes events from the last `Reactive[T]`:
 
+    val higherOrder = new Reactive.Emitter[Reactive[Int]]
+    val evens = new Reactive.Emitter[Int]
+    val odds = new Reactive.Emitter[Int]
+    val flattened: Reactive[Int] = higherOrder.mux
+    val prints = flattened onEvent println
+
+    evens += 2
+    odds += 1
+    higherOrder += evens
+    odds += 3
+    evens += 4 // prints 4
+    higherOrder += odds
+    evens += 6
+    odds += 5 // prints 5
+
+In some cases we want to obtain all the events from all the reactive values produced by the higher-order reactive.
+To do so, we use the `union` combinator.
