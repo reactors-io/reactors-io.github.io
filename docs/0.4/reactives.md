@@ -254,3 +254,16 @@ To access them, we use the `mux` operator -- this operator multiplexes events fr
 
 In some cases we want to obtain all the events from all the reactive values produced by the higher-order reactive.
 To do so, we use the `union` combinator.
+
+   val flattened: Reactive[Int] = higherOrder.union
+   
+   higherOrder += evens
+   odds += 3
+   events += 4 // prints 4
+   higherOrder += odds
+   evens += 6 // prints 6
+   odds += 5 // prints 5
+
+
+
+
