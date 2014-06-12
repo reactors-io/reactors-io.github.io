@@ -200,6 +200,7 @@ The `map` combinator transforms events in one reactive into events for a derived
 we use it to map each number into its square.
 The `scanPast` combinator combines the last and the current event to produce a new event for the derived reactive --
 we use it to add the previous value of the sum to the current one.
+For example, if an input reactive produces numbers `0`, `1` and `2`, the reactive returned by `scanPast` produces numbers `0`, `1` and `3`. 
 
     def sumOfSquares(n: Int): Int = {
       val emitter = new Reactive.Emitter[Int]
