@@ -13,4 +13,15 @@ pagetot: 10
 
 
 
-Under construction
+Signals are special kind of reactive values that cache the last produced event.
+
+    trait Signal[T] {
+      def apply(): T
+    }
+
+To obtain the value of the last event, we call the signal's `apply` method.
+Any reactive value can be converted into a signal by calling its `signal` method.
+We need to provide the initial value of the signal when calling this method.
+
+    val emitter = Reactive.Emitter[Int]
+    val sig = emitter.signal(0)
