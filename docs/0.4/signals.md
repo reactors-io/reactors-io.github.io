@@ -25,3 +25,11 @@ We need to provide the initial value of the signal when calling this method.
 
     val emitter = Reactive.Emitter[Int]
     val sig = emitter.signal(0)
+
+The signal `sig` can then be queried to find out about the last emitted event:
+
+    sig() // returns 0
+    emitter += 1
+    sig() // returns 1
+    emitter += 5
+    sig() // returns 5
