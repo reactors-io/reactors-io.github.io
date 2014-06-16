@@ -33,3 +33,5 @@ The signal `sig` can then be queried to find out about the last emitted event:
     sig() // returns 1
     emitter += 5
     sig() // returns 5
+
+Signals support some additional combinators, such as `zip`:
