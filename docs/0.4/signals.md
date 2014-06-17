@@ -35,3 +35,7 @@ The signal `sig` can then be queried to find out about the last emitted event:
     sig() // returns 5
 
 Signals support some additional combinators, such as `zip`:
+
+    (Signal.Const(10) zip sig()) {
+      _ + _
+    }
