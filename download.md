@@ -17,6 +17,12 @@ or add Reactive Collections to your SBT file as a managed dependency.
 
 ## Direct
 
+### Scala 2.11
+
+- latest stable version: [{{ site.reactive_collections_version }}](http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactive-collections_2.11/{{ site.reactive_collections_version }}/reactive-collections_2.10-{{ site.reactive_collections_version }}.jar)
+- snapshot version: [{{ site.reactive_collections_snapshot_version }}](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=com.storm-enroute&a=reactive-collections_2.11&v={{ site.reactive_collections_snapshot_version }}&e=jar)
+
+
 ### Scala 2.10
 
 - latest stable version: [{{ site.reactive_collections_version }}](http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactive-collections_2.10/{{ site.reactive_collections_version }}/reactive-collections_2.10-{{ site.reactive_collections_version }}.jar)
@@ -43,4 +49,8 @@ you can use the nightly snapshot by adding the following line instead:
 
     libraryDependencies ++= Seq(
       "com.storm-enroute" %% "reactive-collections" % "{{ site.reactive_collections_snapshot_version }}")
+
+
+
+
 
