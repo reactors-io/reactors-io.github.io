@@ -4,5 +4,5 @@ description: Docs and resources for Reactive Collections
 url: http://reactive-collections.com
 baseUrl: http://reactive-collections.com
 relative_permalinks: false
-reactive_collections_version: 0.4
-reactive_collections_snapshot_version: 0.5-SNAPSHOT
+reactive_collections_version: 0.5
+reactive_collections_snapshot_version: 0.6-SNAPSHOT
