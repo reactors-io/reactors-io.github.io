@@ -3,15 +3,14 @@ layout: projdefault
 projectname: Reactive Collections
 projectpath: 
 logoname: reactress-mini-logo-flat.png
-title: Reactive Isolates
-permalink: /docs/0.3/isolates/index.html
-reactressversion: 0.4
+title: Isolates
+permalink: /docs/0.6/isolates/index.html
+reactressversion: 0.6
 section: General
 pagenum: 4
 pagetot: 10
 ---
 
 
-
-Under construction!
+Under construction.
 

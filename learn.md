@@ -12,6 +12,12 @@ permalink: /learn/index.html
 ## Releases
 
 
+### Reactive Collections 0.6
+
+- Reactive Collections Documentation -- [HTML](/docs/0.6/)
+- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.6-SNAPSHOT/api)
+
+
 ### Reactive Collections 0.4
 
 - Reactive Collections Documentation -- [HTML](/docs/0.4/)
@@ -25,7 +31,6 @@ permalink: /learn/index.html
 
 ## Reactive Collections Under-The-Hood
 
-This document describes the internal design and the goals behind the Reactive Collections framework.
+[This document](/whitepaper/) describes the internal design and the goals behind the Reactive Collections framework.
 
-Under construction!
 

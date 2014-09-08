@@ -4,8 +4,8 @@ projectname: Reactive Collections
 projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Reactive Values
-permalink: /docs/0.4/reactives/index.html
-reactressversion: 0.4
+permalink: /docs/0.6/reactives/index.html
+reactressversion: 0.6
 section: General
 pagenum: 1
 pagetot: 10

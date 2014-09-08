@@ -3,14 +3,14 @@ layout: projdefault
 projectname: Reactive Collections
 projectpath: 
 logoname: reactress-mini-logo-flat.png
-title: Reactive Containers
-permalink: /docs/0.3/containers/index.html
-reactressversion: 0.4
+title: Containers
+permalink: /docs/0.6/containers/index.html
+reactressversion: 0.6
 section: General
 pagenum: 3
 pagetot: 10
 ---
 
 
-Under construction!
+Under construction.
 
