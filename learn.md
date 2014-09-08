@@ -15,12 +15,12 @@ permalink: /learn/index.html
 ### Reactive Collections 0.4
 
 - Reactive Collections Documentation -- [HTML](/docs/0.4/)
-- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/final/reactive-collections/0.4/api)
+- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.4/api)
 
 
 ## Snapshot Version
 
-- API documentation (automatically published) -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/api)
+- API documentation (automatically published) -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/{{ reactive_collections_snapshot_version }}/api)
 
 
 ## Reactive Collections Under-The-Hood
