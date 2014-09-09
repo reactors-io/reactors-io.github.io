@@ -18,6 +18,11 @@ permalink: /learn/index.html
 - API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.6-SNAPSHOT/api)
 
 
+### Reactive Collections 0.5
+
+- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.5/api)
+
+
 ### Reactive Collections 0.4
 
 - Reactive Collections Documentation -- [HTML](/docs/0.4/)
