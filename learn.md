@@ -31,6 +31,6 @@ permalink: /learn/index.html
 
 ## Reactive Collections Under-The-Hood
 
-[This document](/whitepaper/) describes the internal design and the goals behind the Reactive Collections framework.
+[This document](/under-the-hood/) describes the internal design and the goals behind the Reactive Collections framework.
 
 

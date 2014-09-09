@@ -4,7 +4,7 @@ projectname: Reactive Collections
 projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Whitepaper
-permalink: /whitepaper/index.html
+permalink: /under-the-hood/index.html
 ---
 
 
