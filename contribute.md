@@ -18,7 +18,7 @@ Feeling like contributing with some code?
 Reactive collections source code is available at [GitHub](https://github.com/storm-enroute/reactive-collections).
 Simply fork us and submit a pull request --
 we will review it and merge your changes in.
-Make sure to read the [contributor's guide](/dev/contribute/) first!
+Make sure to read the [contributor's guide](http://storm-enroute.com/dev/contribute/) first!
 
 
 ### License
