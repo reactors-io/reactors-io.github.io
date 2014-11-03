@@ -99,10 +99,10 @@ We will study the `RContainer` type in a subsequent section.
 <table class="docs-tip">
 <td><img src="/resources/images/reactress-warning.png"/></td>
 <td>
-Note that the `RMap` type is specialized at the key type `K`,
-and is meant to store reference values `V`.
-To store primitive values, use the `RHashValMap[K, V]` type,
-and note that in the Scala 2.11.x both the `K` and `V` type
+Note that the <code>RMap</code> type is specialized at the key type <code>K</code>,
+and is meant to store reference values <code>V</code>.
+To store primitive values, use the <code>RHashValMap[K, V]</code> type,
+and note that in the Scala 2.11.x both the <code>K</code> and <code>V</code> type
 still need to be specialized to benefit from specialization
 (this might eventually be resolved by either miniboxing
 or JVM-level specialization).
@@ -132,8 +132,11 @@ Here is a simple example of how to use reactive maps:
     val prints = stringReps.react(1) onEvent {
       txt => println("String for 1: " + txt)
     }
-    stringReps(1) = "1"
-    stringReps(1) = "One"
+    stringReps(1) = "1"    // prints: String for 1: 1
+    stringReps(1) = "One"  // prints: string for 1: One
+
+The default `RMap` implementation is the `RHashMap` class.
+This reactive map is implemented with a closed-addressing hash table.
 
 The reactive map also contains several projection methods:
 
@@ -147,8 +150,42 @@ to work with keys and values in the map, or pairs of thereof.
 
 ## Reactive sets
 
+Reactive sets are represented with the `RSet` trait and have the following interface:
+
+    trait RSet[T] extends RContainer[T] {
+      def +=(elem: T): Boolean
+      def -=(elem: T): Boolean
+      def apply(elem: T): Boolean
+      def inserts: Reactive[T]
+      def removes: Reactive[T]
+    }
+
+The first three methods should be familiar from the Scala standard library collections.
+The `inserts` and `removes` methods return reactive values which emit the elements that
+are inserted into or removed from the set, respectively.
+
+The default reactive set implementation is `RHashSet`.
+
 
 ## Reactive containers
+
+The reactive sets revealed a pair of interesting methods called `inserts` and `removes`.
+These methods are present on both reactive maps and reactive sets,
+as well as other reactive containers,
+and are fundamental when implementing functional combinators on reactive containers. 
+
+Reactive containers are represented with the `RContainer[T]` type.
+The simplified `RContainer[T]` interfaces is as follows:
+
+    trait RContainer[T] {
+      def inserts: Reactive[T]
+      def removes: Reactive[T]
+      def react: RContainer.Lifted[T]
+      def foreach(f: T => Unit): Unit
+      def size: Int
+    }
+
+TODO
 
 
 ## Reactive queues
