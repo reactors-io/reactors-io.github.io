@@ -15,8 +15,8 @@ pagetot: 10
 
 
 
-The basic data-type that drives most computations in Reactive Collections is called
-a **reactive value**, represented by the type `Reactive[T]`.
+The basic data-type that drives most computations in Reactive Collections is
+called a **reactive value**, represented by the type `Reactive[T]`.
 A reactive value, or simply -- a **reactive**, represents an entity
 that can occasionally produce values of type `T`.
 These values are called *events*.
@@ -50,7 +50,8 @@ One way to do this is to use the `onReaction` method of the `Reactive[T]` trait:
 
     def onReaction(reactor: Reactor[T]): Reactive.Subscription
 
-The `onReaction` method takes a reactor of type `Reactor[T]` and returns a `Subscription` object.
+The `onReaction` method takes a reactor of type `Reactor[T]` and returns a
+`Subscription` object.
 A `Reactor[T]` is a type that provides two methods called `react` and `unreact`:
 
     trait Reactor[-T] {
@@ -74,13 +75,15 @@ If the `unsubscribe` method is invoked,
 events are no longer passed to the corresponding reactor
 and its `unreact` method is never called.
 
-Reactive Collections offer several more Scala-idiomatic ways to subscribe to events.
+Reactive Collections offer several more Scala-idiomatic ways to subscribe to
+events.
 The `onEvent` method is used to subscribe to events, but ignore unreactions.
 The `onCase` method is similar, but takes a partial function --
 only the events for which the partial function is defined are considered.
 The `on` method executes a block of code when an event arrives --
 it is most appropriate for reactives of type `Reactive[Unit]`.
-Finally, the `onUnreact` method executes a block of code when the reactive unreacts.
+Finally, the `onUnreact` method executes a block of code when the reactive
+unreacts.
 
     def onEvent(reactor: T => Unit): Reactive.Subscription
     def onCase(reactor: PartialFunction[T, Unit]): Reactive.Subscription
@@ -91,7 +94,6 @@ There are several basic concrete reactive values:
 
 - `Reactive.Never` -- never emits any events
 - `Reactive.Emitter` -- emits an event every time its `+=` method is called
-- passive reactives -- emit a separate stream of events to each reactor that subscribes to them
 
 
 ## Reactive emitters
@@ -101,7 +103,8 @@ We create it as follows:
 
     val emitter = new Reactive.Emitter[Int]
 
-The reactive emitter produces an events each time an event is added to it by the `+=` method.
+The reactive emitter produces an events each time an event is added to it by the
+`+=` method.
 The following example prints `"Hello world!"` to the standard output.
 
     val printSubscription = emitter onEvent println
@@ -119,7 +122,8 @@ Subsequent invocations of `+=` are ignored.
 ## Subscriptions
 
 A subscription is an object used to unsubscribe from a reaction.
-In most cases this means that the corresponding entity will no longer receive events.
+In most cases this means that the corresponding entity will no longer receive
+events.
 We unsubscribe by calling the `unsubscribe` method:
 
     val printSubscription = emitter onEvent println
@@ -127,14 +131,30 @@ We unsubscribe by calling the `unsubscribe` method:
     printSubscription.unsubscribe()
     emitter += "You can't hear me!"
 
-Note that we always store the `Subscription` object returned by the `onX` methods.
-Without keeping a reference to the `Subscription` there is no way to unsubscribe from the callback,
-so the callback could react forever, leading to effects called **memory leaks** and **time leaks**.
-For this reason, when Reactive Collections detect that the program no longer has a reference to the `Subscription`,
-it automatically unsubscribes.
-This automatic unsubscription usually happens during the first subsequent GC cycle.
+Note that we always store the `Subscription` object returned by the `onX`
+methods.
+Since Reactive Collections 0.6, we *do not* have to do this.
+It is equally correct to write the following:
 
     emitter onEvent println
+
+Every `onX` call is meant to have side-effects, so its subscription gets
+automatically stored.
+Be aware that without keeping a reference to the `Subscription` there is no way
+to unsubscribe from the callback, so the callback could react forever,
+leading to effects called **memory leaks** and **time leaks**.
+If you plan to unsubscribe from the callback before the application ends, you
+should store the subscription returned by `onEvent`, or any other `onX` method.
+
+For all other combinators,
+when Reactive Collections detect that the program no longer has a reference to
+the `Subscription`, it automatically unsubscribes.
+This automatic unsubscription usually happens during the first subsequent GC
+cycle.
+The `foreach` is an example of a combinator for which the subscription is not
+automatically saved:
+
+    emitter foreach println
     System.gc()
     emitter += "Chances are you won't hear me anymore."
 
@@ -151,7 +171,7 @@ uses an auxiliary method `emitSquare` to emit `n` squares:
     def sumOfSquares(n: Int): Int = {
       var sum = 0
       
-      squares.onEvent(sum += _)
+      squares.foreach(sum += _)
       for (i <- 1 until n) emitSquare(i)
 
       sum
@@ -196,11 +216,13 @@ composing simpler ones.
 Let's rewrite the method `sumOfSquares` from before.
 This time we do not use a callback and a mutable variable.
 Instead, we use the `map` and `scanPast` combinators.
-The `map` combinator transforms events in one reactive into events for a derived reactive --
-we use it to map each number into its square.
-The `scanPast` combinator combines the last and the current event to produce a new event for the derived reactive --
+The `map` combinator transforms events in one reactive into events for a derived
+reactive -- we use it to map each number into its square.
+The `scanPast` combinator combines the last and the current event to produce a
+new event for the derived reactive --
 we use it to add the previous value of the sum to the current one.
-For example, if an input reactive produces numbers `0`, `1` and `2`, the reactive returned by `scanPast` produces numbers `0`, `1` and `3`. 
+For example, if an input reactive produces numbers `0`, `1` and `2`, the
+reactive returned by `scanPast` produces numbers `0`, `1` and `3`. 
 
     def sumOfSquares(n: Int): Int = {
       val emitter = new Reactive.Emitter[Int]
@@ -210,15 +232,18 @@ For example, if an input reactive produces numbers `0`, `1` and `2`, the reactiv
     }
 
 The `Reactive[T]` trait comes with a large number of predefined combinators.
-Same as with callbacks, you must always store the return value of the combinator.
+Same as with callbacks, you must always store the return value of the
+combinator.
 Not doing so eventually results in an automatic unsubscription.
 
 A bunch of reactive values composed using functional combinators
 forms a **dataflow graph**.
-Emitters are source nodes in this graph, reactives obtained by various combinators are inner nodes
+Emitters are source nodes in this graph, reactives obtained by various
+combinators are inner nodes
 and callback methods like `onEvent` form sink nodes.
 Some combinators like `union` take several input reactives.
-Such reactives correspond to nodes with multiple input edges in the dataflow graph.
+Such reactives correspond to nodes with multiple input edges in the dataflow
+graph.
 
     val numbers = new Reactive.Emitter[Int]
     val even = numbers.filter(_ % 2 == 0)
@@ -228,15 +253,18 @@ Such reactives correspond to nodes with multiple input edges in the dataflow gra
 
 ## Higher-order Reactive Values
 
-In some cases reactive values produce events that are themselves reactive values --
-we call them **higher-order reactive values**.
+In some cases reactive values produce events that are themselves reactive
+values -- we call them **higher-order reactive values**.
 A higher-order reactive can have a type like:
 
     Reactive[Reactive[T]]
 
-There are multiple ways to access the events of type `T` from the inner reactive values.
-We might be interested in the events from the last `Reactive[T]` produced in the higher-order reactive.
-To access them, we use the `mux` operator -- this operator multiplexes events from the last `Reactive[T]`:
+There are multiple ways to access the events of type `T` from the inner reactive
+values.
+We might be interested in the events from the last `Reactive[T]` produced in the
+higher-order reactive.
+To access them, we use the `mux` operator -- this operator multiplexes events
+from the last `Reactive[T]`:
 
     val higherOrder = new Reactive.Emitter[Reactive[Int]]
     val evens = new Reactive.Emitter[Int]
@@ -253,7 +281,8 @@ To access them, we use the `mux` operator -- this operator multiplexes events fr
     evens += 6
     odds += 5 // prints 5
 
-In some cases we want to obtain all the events from all the reactive values produced by the higher-order reactive.
+In some cases we want to obtain all the events from all the reactive values
+produced by the higher-order reactive.
 To do so, we use the `union` combinator.
 
     val flattened: Reactive[Int] = higherOrder.union
