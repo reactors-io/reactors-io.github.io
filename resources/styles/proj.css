@@ -231,30 +231,38 @@ li.topdivider {
 }
 
 div.main-description {
-  padding-top: 170px;
+  padding-top: 60px;
   padding-bottom: 60px;
 }
 
-ul.main-items {
-  list-style: none;
-  display: block;
-}
-
-ul.main-items li {
-  display: inline-block;
-  width: 240px;
-  height: 260px;
+div.main-description h2 {
   text-align: center;
   vertical-align: text-top;
-  padding: 25px;
-}
-
-ul.main-items li h2 {
   margin-top: 10px;
   border-bottom: 0px solid transparent;
 }
 
-ul.main-items li div {
+div.main-description div {
+  text-align: center;
+}
+
+div.main-description hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+div.main-description div.main-code {
+  padding-top: 50px;
+  text-align: left;
+}
+
+div.main-items-icon {
   display: inline-block;
   width: 46px;
   height: 36px;
@@ -269,13 +277,15 @@ ul.main-items li div {
   -moz-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
+  text-align: center;
+  vertical-align: text-top;
 }
 
-ul.main-items li div:hover {
+div.main-items-icon:hover {
   border: 1px solid #707070;
 }
 
-ul.main-items li div img {
+div.main-items-icon img {
   height: 26px;
   opacity: 0.4;
   filter: alpha(opacity = 40); /* For IE8 and earlier */
@@ -286,7 +296,7 @@ ul.main-items li div img {
   transition: .2s;
 }
 
-ul.main-items li div:hover img {
+div.main-items-icon:hover img {
   opacity: 0.7;
   filter: alpha(opacity = 70); /* For IE8 and earlier */
 }
