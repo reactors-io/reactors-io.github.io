@@ -231,8 +231,8 @@ li.topdivider {
 }
 
 div.main-description {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 div.main-description h2 {
@@ -252,13 +252,13 @@ div.main-description hr {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.3),
     rgba(0, 0, 0, 0)
   );
 }
 
 div.main-description div.main-code {
-  padding-top: 50px;
+  padding-top: 0px;
   text-align: left;
 }
 

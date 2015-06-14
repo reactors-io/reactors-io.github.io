@@ -109,17 +109,15 @@ def xor(a: Signal[Boolean], b: Signal[Boolean]) =
   (a zip b) { _ ^ _ }
 def halfAdder(a: Signal[Boolean], b: Signal[Boolean]) =
   (xor(a, b), and(a, b))
-def logger(name: String, r: Reactive[Boolean]) =
-  r.on(v => println(s"$name: $v"))
+def logger(name: String, r: Events[Boolean]) =
+  r.onEvent(v => println(s"$name: $v"))
 
 // Simulate a half-adder
 val inputA = RCell(false)
 val inputB = RCell(false)
 val (sum, carry) = halfAdder(inputA, inputB)
-logger("inputA", inputA)
-logger("inputB", inputB)
-logger("sum", s)
-logger("carry", c)
+logger("sum", sum)
+logger("carry", carry)
 inputA := true
 inputB := true
 </code></pre>
@@ -218,7 +216,7 @@ rank("Deanna") = "Lieutenant"
 rank("Data") = "Commander Lieutenant"
 rank("Riker") = "Commander"
 
-val numLt: Reactive[Int] =
+val numLt: Events[Int] =
   rank.react.filter(_._2 == "Lieutenant").size
 val shipRank = new Commutoid[(String, String)] {
   val zero = ("nobody", "no-rank")
@@ -226,7 +224,7 @@ val shipRank = new Commutoid[(String, String)] {
     if (x._2 < y._2) x else y
   }
 }
-val commandingOfficer: Reactive[String] =
+val commandingOfficer: Events[String] =
   rank.react.commuteFold(shipRank)
 
 (commandingOfficer zip numLt)((m, n) => (m, n)).onEvent { (m, n) =>
