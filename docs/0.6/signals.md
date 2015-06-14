@@ -13,17 +13,17 @@ pagetot: 10
 
 
 
-Signals are special kind of reactive values that cache the last produced event.
+Signals are special kind of event streams that cache the last produced event.
 
     trait Signal[T] {
       def apply(): T
     }
 
 To obtain the value of the last event, we call the signal's `apply` method.
-Any reactive value can be converted into a signal by calling its `signal` method.
+Any event stream can be converted into a signal by calling its `signal` method.
 We need to provide the initial value of the signal when calling this method.
 
-    val emitter = new Reactive.Emitter[Int]
+    val emitter = new Events.Emitter[Int]
     val sig = emitter.signal(0)
 
 The signal `sig` can then be queried to find out about the last emitted event:
@@ -47,9 +47,9 @@ A *static aggregate signal* is an aggregation of the values from several signals
 As soon as one of the signals in the aggregation changes, the aggregate signal is updated:
 
     val s0 = Signal.Const(1)
-    val e1 = new Reactive.Emitter[Int]
+    val e1 = new Events.Emitter[Int]
     val s1 = e1.signal(0)
-    val e2 = new Reactive.Emitter[Int]
+    val e2 = new Events.Emitter[Int]
     val s2 = e1.signal(2)
     val a = Signal.Aggregate(s0, s1, s2)
     a() // returns 3
@@ -74,13 +74,13 @@ the signal's `onMutated` method must be called:
     bs.onMutated()
 
 Calling `onMutated` is cumbersome,
-so we mainly use mutable signals with the `mutate` combinator on reactives:
+so we mainly use mutable signals with the `mutate` combinator on event streams:
 
     import scala.collection._
     val bs = Signal.Mutable(mutable.ArrayBuffer[Int]())
     val logs = bs.onEvent(println)
 
-    val emitter = new Reactive.Emitter[Int]
+    val emitter = new Events.Emitter[Int]
     val mutations = emitter.mutate(bs) { num =>
       bs() += num
     }

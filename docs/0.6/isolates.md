@@ -7,17 +7,19 @@ title: Isolates
 permalink: /docs/0.6/isolates/index.html
 reactressversion: 0.6
 section: General
-pagenum: 4
+pagenum: 5
 pagetot: 10
 ---
 
 
 
-## Defining an isolate
+## Defining an Isolate
+
+TODO
 
 
-## Starting an isolate
+## Starting an Isolate
 
 
-## Isolate communication
+## Isolate Communication
 
