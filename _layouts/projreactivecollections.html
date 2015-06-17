@@ -134,7 +134,7 @@ inputB := true
 // or fail after a 10 seconds countdown.
 val request = system.net
   .url("https://www.ietf.org/rfc/rfc1738.txt")
-val timer = system.timer(1.second)
+val timer = system.time.period(1.second)
   .map(_ => 1)
   .scanPast(10)(_ - _)
   .takeWhile(_ >= 0)
