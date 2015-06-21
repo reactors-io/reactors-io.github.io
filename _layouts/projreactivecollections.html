@@ -132,19 +132,19 @@ inputB := true
       <div class="main-code">
 <pre><code>// Fetch contents of a URL
 // or fail after a 10 seconds countdown.
-val request = system.net
-  .url("https://www.ietf.org/rfc/rfc1738.txt")
 val timer = system.time.period(1.second)
   .map(_ => 1)
-  .scanPast(10)(_ - _)
+  .scanPast(4)(_ - _)
   .takeWhile(_ >= 0)
-val timeout = timer.unreacted
-timer.onEvent(println)
-request
-  .until(timeout)
+system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
+  .map(_.toString)
+  .until(timer.unreacted)
   .ivar
   .orElse("Request failed.")
-  .onEvent(println)
+  .onEvent { txt =>
+    println(txt.take(512) + "...")
+    channel.seal()
+  }
 </code></pre>
       </div>
     </div>
