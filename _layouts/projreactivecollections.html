@@ -188,7 +188,7 @@ class TimeServer extends Iso[(String, Channel[Long])] {
   }
 }
 class Client(server: Channel[(String, Channel[Long])])
-extends Iso[String] {
+extends Iso[Long] {
   sysEvents.onCase {
     case IsoStarted => server ! ("time", channel)
   }
@@ -197,8 +197,8 @@ extends Iso[String] {
   }
 }
 
-val timeServer = isoSystem.isolate(Proto[TimeServer])
-val client = isoSystem.isolate(Proto[Client](timeServer))
+val timeServer = system.isolate(Proto[TimeServer])
+val client = system.isolate(Proto[Client](timeServer))
 </code></pre>
       </div>
     </div>
