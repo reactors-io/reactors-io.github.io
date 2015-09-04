@@ -57,8 +57,3 @@ you can use the nightly snapshot by adding the following line instead:
 
     libraryDependencies ++= Seq(
       "com.storm-enroute" %% "reactive-collections" % "{{ site.reactive_collections_snapshot_version }}")
-
-
-
-
-
