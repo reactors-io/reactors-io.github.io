@@ -78,7 +78,7 @@ and its `unreact` method is never called.
 Reactive Collections offer several more Scala-idiomatic ways to subscribe to
 events.
 The `onEvent` method is used to subscribe to events, but ignore unreactions.
-The `onCase` method is similar, but takes a partial function --
+The `onMatch` method is similar, but takes a partial function --
 only the events for which the partial function is defined are considered.
 The `on` method executes a block of code when an event arrives --
 it is most appropriate for event streams of type `Events[Unit]`.
@@ -86,7 +86,7 @@ Finally, the `onUnreact` method executes a block of code when the event stream
 unreacts.
 
     def onEvent(reactor: T => Unit): Events.Subscription
-    def onCase(reactor: PartialFunction[T, Unit]): Events.Subscription
+    def onMatch(reactor: PartialFunction[T, Unit]): Events.Subscription
     def on(reactor: =>Unit): Events.Subscription
     def onUnreact(reactor: =>Unit): Events.Subscription
 
