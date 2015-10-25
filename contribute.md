@@ -29,4 +29,3 @@ Available [here](https://raw.githubusercontent.com/storm-enroute/reactive-collec
 
 <script src="/resources/js/setlicense.js">_</script>
 <script src="/resources/js/setlicense-reactress.js">_</script>
-
