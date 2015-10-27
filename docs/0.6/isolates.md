@@ -44,6 +44,13 @@ which reacts to incoming `"Hi"` events:
 After the first `"Hi"` event arrives, `HiIso` prints `"Howdee!"`,
 and terminates by sealing its main channel.
 
+Every isolate `Iso[T]` can have an unlimited number of typed input channels,
+but is created with only two channels -- the `main` channel,
+which accepts events of type `T`,
+and the system channel that accepts special `SysEvent` objects.
+We will learn more about isolate communication in a subsequent section.
+Before we get to isolate communication, we will learn how to start isolates.
+
 
 ## Starting an Isolate
 
