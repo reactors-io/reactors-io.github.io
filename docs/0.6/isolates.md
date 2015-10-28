@@ -54,6 +54,14 @@ Before we get to isolate communication, we will learn how to start isolates.
 
 ## Starting an Isolate
 
+In the previous section, we saw how to declare an isolate.
+Declaring an isolate does not actually start its execution --
+the same isolate class can be reused many times to start an isolate instance.
+To start an isolate, we need an existing isolate system.
+An *isolate system* is an entity that groups isolates inside a single machine,
+tracks their names, and can create new isolates when requested.
+We will use the default isolate system factory method -- `IsoSystem.default`.
+
 
 ## Isolate Communication
 
