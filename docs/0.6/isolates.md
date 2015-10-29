@@ -62,6 +62,19 @@ An *isolate system* is an entity that groups isolates inside a single machine,
 tracks their names, and can create new isolates when requested.
 We will use the default isolate system factory method -- `IsoSystem.default`.
 
+    val system = IsoSystem.default("default-system")
+
+Now that we have a valid `system`, we can run isolates.
+We do this by invoking the `isolate` method on `system`,
+and passing it a `Proto` object.
+The `Proto` object is a descriptor for the isolate --
+it contains the isolate class, optional arguments,
+custom name, and a few other things.
+Here is how we start the `HiIso` isolate:
+
+    val ch = system.isolate(Proto[HiIso])
+
 
 ## Isolate Communication
+
 
