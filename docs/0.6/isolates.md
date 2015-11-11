@@ -78,7 +78,7 @@ At this point, our isolate is run.
 The `isolate` call returns that main channel of the isolate that it just started.
 We can use the main channel `ch` to send a message `"Hi"`.
 
-   ch ! "Hi"
+    ch ! "Hi"
 
 And voila -- our isolate will eventually receive the `"Hi"` message and terminate.
 
