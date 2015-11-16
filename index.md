@@ -1,9 +1,9 @@
 ---
 layout: projreactivecollections
-projectname: Reactive Collections
+projectname: Reactors.IO
 projectpath: 
 logoname: reactress-mini-logo-flat.png
-title: Reactive Collections
+title: Reactors.IO
 permalink: /index.html
 ---
 

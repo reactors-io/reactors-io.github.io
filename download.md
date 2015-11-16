@@ -1,6 +1,6 @@
 ---
 layout: projdefault
-projectname: Reactive Collections
+projectname: Reactors.IO
 projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Download
@@ -10,9 +10,9 @@ permalink: /download/index.html
 
 
 
-Reactive Collections are hosted on Sonatype OSSRH.
+Reactors.IO is hosted on Sonatype OSSRH.
 You can download the JAR directly,
-or add Reactive Collections to your SBT file as a managed dependency.
+or add Reactors.IO to your SBT file as a managed dependency.
 
 
 ## Direct
@@ -39,7 +39,7 @@ or add Reactive Collections to your SBT file as a managed dependency.
 
 ## SBT
 
-To add Reactive Collections to you project,
+To add Reactors.IO to you project,
 add the following lines to your SBT build definition file (e.g. `build.sbt`):
 
     resolvers ++= Seq(
