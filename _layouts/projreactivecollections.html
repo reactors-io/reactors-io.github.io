@@ -132,7 +132,7 @@ inputB := true
       <div class="main-code">
 <pre><code>// Fetch contents of a URL
 // or fail after a 10 seconds countdown.
-val timer = system.time.period(1.second)
+val timer = system.time.periodic(1.second)
   .map(_ => 1)
   .scanPast(4)(_ - _)
   .takeWhile(_ >= 0)
@@ -143,7 +143,7 @@ system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
   .orElse("Request failed.")
   .onEvent { txt =>
     println(txt.take(512) + "...")
-    channel.seal()
+    main.seal()
   }
 </code></pre>
       </div>
@@ -183,16 +183,16 @@ system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
       <div class="main-code">
 <pre><code>// Client asks for the server time
 class TimeServer extends Iso[(String, Channel[Long])] {
-  events.onCase {
+  main.events onMatch {
     case ("time", response) => response ! System.currentTimeMillis()
   }
 }
 class Client(server: Channel[(String, Channel[Long])])
 extends Iso[Long] {
-  sysEvents.onCase {
+  sysEvents.onMatch {
     case IsoStarted => server ! ("time", channel)
   }
-  events.onEvent {
+  main.events onEvent {
     time => println("Server Unix time: " + time)
   }
 }
