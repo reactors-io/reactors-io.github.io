@@ -1,6 +1,6 @@
 ---
 layout: projdefault
-projectname: Reactive Collections
+projectname: Reactors.IO
 projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Containers
@@ -13,7 +13,7 @@ pagetot: 10
 
 
 In addition to reactive values and signals described earlier,
-the Reactive Collections framework also provides data collections
+the Reactors.IO framework also provides data collections
 whose contents can change as a result of certain events,
 or whose mutations may trigger arbitrary sets of events.
 Such data collections are called *reactive containers*
@@ -29,7 +29,7 @@ for primitive types `Int`, `Long` and `Double`.
 Similar to how functional languages model mutable memory locations using *mutable cells*,
 a reactive programming model can provide reactive cells,
 whose mutations trigger events.
-In Reactive Collections,
+In Reactors.IO,
 the reactive cell abstraction is represented by the `RCell[T]` type,
 whose simplified interface is as follows:
 

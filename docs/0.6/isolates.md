@@ -1,6 +1,6 @@
 ---
 layout: projdefault
-projectname: Reactive Collections
+projectname: Reactors.IO
 projectpath: 
 logoname: reactress-mini-logo-flat.png
 title: Isolates
