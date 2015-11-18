@@ -1,4 +1,4 @@
 
 
-setLicense("https://api.github.com/repos/storm-enroute/reactive-collections/contents/LICENSE", "reactress-mini-logo.png")
+setLicense("https://api.github.com/repos/reactors-io/reactors/contents/LICENSE", "reactress-mini-logo.png")
 
