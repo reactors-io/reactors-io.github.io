@@ -7,7 +7,8 @@ title: Whitepaper
 permalink: /under-the-hood/index.html
 ---
 
-Event streams and related abstractions are described in
+Event streams and related abstractions for event-based programming
+are described in
 [this paper](/resources/docs/event-streams.pdf).
 Note that at the time the paper was written,
 event streams (now represented with the `Events[T]` type)
@@ -16,7 +17,8 @@ and observers (now represented with the `Observer[T]` type)
 used to have the type `Reactor[T]`.
 This was changed in the Reactors.IO 0.6 version.
 
-Reactors semantics were described in detail in
+Reactor semantics and their role in distributed system design
+are described in detail in
 [this Onward 2015 paper](/resources/docs/reactors.pdf).
 Note that at the time the paper was written,
 reactors (now represented with the `Reactor[T]` type)
