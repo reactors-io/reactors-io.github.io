@@ -8,32 +8,22 @@ permalink: /learn/index.html
 ---
 
 
+## API docs
 
-## Releases
-
-
-### Reactors.IO 0.6
-
-- Reactors.IO Documentation -- [HTML](/docs/0.6/)
-- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactors/0.6-SNAPSHOT/api)
+- [Reactors.IO 0.6 API](http://storm-enroute.com/apidocs/reactors/0.6-SNAPSHOT/api)
+- [Reactors.IO 0.5 API](http://storm-enroute.com/apidocs/reactive-collections/0.5/api)
+- [Reactors.IO 0.4 API](http://storm-enroute.com/apidocs/reactive-collections/0.4/api)
 
 
-### Reactors.IO 0.5
+## Getting started guide
 
-- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.5/api)
+The following step-by-step guide explains the concepts in the framework in detail,
+and it is the best way to get started:
 
-
-### Reactors.IO 0.4
-
-- Reactors.IO Documentation -- [HTML](/docs/0.4/)
-- API Documentation -- [ScalaDoc](http://storm-enroute.com/apidocs/reactive-collections/0.4/api)
-
-
-## Snapshot Version
-
-- API documentation (automatically published) -- [ScalaDoc](http://storm-enroute.com/apidocs/reactors/{{ site.reactors_snapshot_version }}/api)
+- [Reactors.IO Guide](http://storm-enroute.com/tutorialdocs/reactors/)
 
 
 ## Reactors.IO Under-The-Hood
 
-[These documents](/under-the-hood/) describes the internal design and the goals behind the Reactors.IO framework.
+[These documents](/under-the-hood/) describes the internal design and the goals behind
+the Reactors.IO framework.
