@@ -50,12 +50,14 @@ layout: projbase
     <div class="bl bl-build-status">
       <a href='https://ci.storm-enroute.com:8080/job/public-reactive-collections/'>
         <img src='/resources/images/icons/cogs3-gray.png' height='14px'/>
-        <img class="buildstatus" src='https://ci.storm-enroute.com:8080/buildStatus/icon?job=public-reactive-collections' onError="this.src='/resources/images/build-status-passing.png';" />
+        <img class="buildstatus"
+          src='https://travis-ci.org/reactors-io/reactors.svg?branch=master'
+          onError="this.src='/resources/images/passing.svg';" />
       </a>
       <div class="right-edge"></div>
     </div>
     <div class="bl bl-tutorial">
-      <a href='/docs/{{ site.reactors_version }}/'>
+      <a href='http://storm-enroute.com/tutorialdocs/reactors/'>
         Getting started guide
         <img src='/resources/images/icons/graduation20-gray.png' height='14px'/>
       </a>
