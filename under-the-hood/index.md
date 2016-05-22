@@ -20,8 +20,3 @@ This was changed in the Reactors.IO 0.6 version.
 Reactor semantics and their role in distributed system design
 are described in detail in
 [this Onward 2015 paper](/resources/docs/reactors.pdf).
-Note that at the time the paper was written,
-reactors (now represented with the `Reactor[T]` type)
-were called *isolates*,
-and used to have the `Iso[T]` type.
-This was changed in the Reactors.IO 0.6 version.
