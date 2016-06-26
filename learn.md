@@ -10,7 +10,7 @@ permalink: /learn/index.html
 
 ## API docs
 
-- [Reactors.IO 0.6 API](http://storm-enroute.com/apidocs/reactors/0.6-SNAPSHOT/api)
+- [Reactors.IO 0.6 API](http://storm-enroute.com/apidocs/reactors/0.6/api)
 - [Reactors.IO 0.5 API](http://storm-enroute.com/apidocs/reactive-collections/0.5/api)
 - [Reactors.IO 0.4 API](http://storm-enroute.com/apidocs/reactive-collections/0.4/api)
 
