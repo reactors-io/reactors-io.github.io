@@ -29,12 +29,11 @@ or add Reactors.IO to your SBT file as a managed dependency.
 
 ### Scala 2.10
 
-<a href='http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactors_2.10/{{ site.reactors_version }}/reactors_2.10-{{ site.reactors_version }}.jar'>
-  <img class="buildstatus" src='https://img.shields.io/maven-central/v/com.storm-enroute/reactors_2.10.svg' onerror='this.style.display="none"' />
+<a href='http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactors-core_2.10/{{ site.reactors_version }}/reactors-core_2.10-{{ site.reactors_version }}.jar'>
+  <img class="buildstatus" src='https://img.shields.io/maven-central/v/com.storm-enroute/reactors-core_2.10.svg' onerror='this.style.display="none"' />
 </a>
 
-- latest stable version: [{{ site.reactors_version }}](http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactors_2.10/{{ site.reactors_version }}/reactors_2.10-{{ site.reactors_version }}.jar)
-- snapshot version: [{{ site.reactors_snapshot_version }}](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=com.storm-enroute&a=reactors_2.10&v={{ site.reactors_snapshot_version }}&e=jar)
+- latest stable version: [{{ site.reactors_version }}](http://search.maven.org/remotecontent?filepath=com/storm-enroute/reactors-core_2.10/{{ site.reactors_version }}/reactors-core_2.10-{{ site.reactors_version }}.jar)
 
 
 ## SBT
