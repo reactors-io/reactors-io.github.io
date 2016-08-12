@@ -18,12 +18,33 @@ layout: projbase
 
   $(window).load(startFadeOut);
   setTimeout(startFadeOut, 2500);
+
+  $(document).ready(function(){
+    $(".snippet-carousel").slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      fade: true,
+      arrows: true,
+      asNavFor: ".snippet-nav-carousel"
+    });
+    $(".snippet-nav-carousel").slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      arrows: true,
+      centerMode: true,
+      focusOnSelect: true,
+      asNavFor: ".snippet-carousel"
+    });
+  });
 </script>
 
 <div>
   <script src="/resources/js/reactress-banner.js"></script>
   <div class="banner">
     <div id="bannercenter" class="bannercenter">
+      <span class="bannerdescription">
+        Foundational framework <br/>for distributed computing
+      </span>
       <img src="/resources/images/reactress-banner.jpg"/>
       <div class="bannerlinks">
         <a href="https://github.com/reactors-io/reactors"><img class="bannerlink" id="link-github" src="/resources/images/icons/github7-gray.png"/></a>
@@ -84,6 +105,46 @@ layout: projbase
   <br/>
 
   <div id="main" class="container_16">
+
+    <div class="grid_16">
+      <div class="snippet-carousel">
+        <div>content 1</div>
+        <div>content 2</div>
+        <div>content 3</div>
+        <div>content 4</div>
+        <div>content 5</div>
+      </div>
+
+      <br/>
+
+      <div class="snippet-nav-carousel">
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/dark18.png"/>
+          </div>
+        </div>
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/view2.png"/>
+          </div>
+        </div>
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/parallel.png"/>
+          </div>
+        </div>
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/database7.png"/>
+          </div>
+        </div>
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/triangular42.png"/>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="grid_16 main-description">
       <hr/>
