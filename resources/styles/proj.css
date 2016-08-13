@@ -882,6 +882,7 @@ table.docs-tip img {
 
 .story-header {
   margin-top: 15px;
+  border-bottom: none;
 }
 
 .talk-title {
