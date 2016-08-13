@@ -23,7 +23,7 @@ layout: projbase
     $(".snippet-carousel").slick({
       slidesToShow: 1,
       slidesToScroll: 1,
-      fade: true,
+      fade: false,
       arrows: true,
       asNavFor: ".snippet-nav-carousel"
     });
@@ -108,11 +108,165 @@ layout: projbase
 
     <div class="grid_16">
       <div class="snippet-carousel">
-        <div>content 1</div>
-        <div>content 2</div>
-        <div>content 3</div>
-        <div>content 4</div>
-        <div>content 5</div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">Event-driven</h2>
+            <span>
+              Event-driven architecture that
+              ensures a better separation of concerns
+              and improves composition.
+            </span>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// Define digital circuits
+def and(a: Signal[Boolean], b: Signal[Boolean]) =
+  (a zip b) { _ && _ }
+def xor(a: Signal[Boolean], b: Signal[Boolean]) =
+  (a zip b) { _ ^ _ }
+def halfAdder(a: Signal[Boolean], b: Signal[Boolean]) =
+  (xor(a, b), and(a, b))
+def logger(name: String, r: Events[Boolean]) =
+  r.onEvent(v => println(s"$name: $v"))
+
+// Simulate a half-adder
+val inputA = RCell(false)
+val inputB = RCell(false)
+val (sum, carry) = halfAdder(inputA, inputB)
+logger("sum", sum)
+logger("carry", carry)
+inputA := true
+inputB := true
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">Declarative</h2>
+            <span>
+              Declarative programming style based on functional value
+              composition yields programs that are more concise and
+              easier to understand.
+            </span>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// Fetch contents of a URL
+// or fail after a 10 seconds countdown.
+val timer = system.time.periodic(1.second)
+  .map(_ => 1)
+  .scanPast(4)(_ - _)
+  .takeWhile(_ >= 0)
+system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
+  .map(_.toString)
+  .until(timer.unreacted)
+  .ivar
+  .orElse("Request failed.")
+  .onEvent { txt =>
+    println(txt.take(512) + "...")
+    main.seal()
+  }
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">Concurrent</h2>
+            <span>
+              Concurrency is achieved by separating
+              event propagations into entities called isolates.
+              Isolates communicate through typed channels.
+            </span>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// Client asks for the server time
+class TimeServer extends Iso[(String, Channel[Long])] {
+  main.events onMatch {
+    case ("time", response) => response ! System.currentTimeMillis()
+  }
+}
+class Client(server: Channel[(String, Channel[Long])])
+extends Iso[Long] {
+  sysEvents.onMatch {
+    case IsoStarted => server ! ("time", channel)
+  }
+  main.events onEvent {
+    time => println("Server Unix time: " + time)
+  }
+}
+
+val timeServer = system.isolate(Proto[TimeServer])
+val client = system.isolate(Proto[Client](timeServer))
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">Reactive containers</h2>
+            <span>
+              Reactive data containers contain reactive mutable data.
+              Events are triggered when parts of the dataset change.
+            </span>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// Store ranks of a starship crew and establish the rules
+val rank = RMap[String, String]
+rank("Geordie") = "Lieutenant"
+rank("Deanna") = "Lieutenant"
+rank("Data") = "Commander Lieutenant"
+rank("Riker") = "Commander"
+
+val numLt: Events[Int] =
+  rank.react.filter(_._2 == "Lieutenant").size
+val shipRank = new Commutoid[(String, String)] {
+  val zero = ("nobody", "no-rank")
+  val operator = { (x, y) =>
+    if (x._2 < y._2) x else y
+  }
+}
+val commandingOfficer: Events[String] =
+  rank.react.commuteFold(shipRank)
+
+(commandingOfficer zip numLt)((m, n) => (m, n)).onEvent { (m, n) =>
+  println(s"${m._1} says: all $n lieutenants shall mop floors!")
+}
+
+rank("Picard") = "Captain"
+rank("Worf") = "Lieutenant"
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">GC-friendly</h2>
+            <span>
+              Eliminates boxing for primitive values such as integers
+              and doubles.
+              GC pauses were never shorter!
+            </span>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// No boxing!
+val cell = RCell[Int](0)
+val evens = cell.filter(_ % 2 == 0).to[RSet[Int]]
+val odds = cell.filter(_ % 2 == 1).to[RSet[Int]]
+cell := 1
+cell := 2
+cell := 3
+cell := 4
+(evens union odds).foreach(println)
+</code></pre>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
 
       <br/>
@@ -146,205 +300,7 @@ layout: projbase
       </div>
     </div>
 
-    <div class="grid_16 main-description">
-      <hr/>
-    </div>
-
-    <div class="grid_6 main-description">
-      <div>
-        <div class="main-items-icon">
-          <img src="/resources/images/icons/dark18.png"/>
-        </div>
-      </div>
-      <h2>Event-driven</h2>
-      <span>
-        Event-driven architecture that
-        ensures a better separation of concerns
-        and improves composition.
-      </span>
-    </div>
-    <div class="grid_10 main-description">
-      <div class="main-code">
-<pre><code>// Define digital circuits
-def and(a: Signal[Boolean], b: Signal[Boolean]) =
-  (a zip b) { _ && _ }
-def xor(a: Signal[Boolean], b: Signal[Boolean]) =
-  (a zip b) { _ ^ _ }
-def halfAdder(a: Signal[Boolean], b: Signal[Boolean]) =
-  (xor(a, b), and(a, b))
-def logger(name: String, r: Events[Boolean]) =
-  r.onEvent(v => println(s"$name: $v"))
-
-// Simulate a half-adder
-val inputA = RCell(false)
-val inputB = RCell(false)
-val (sum, carry) = halfAdder(inputA, inputB)
-logger("sum", sum)
-logger("carry", carry)
-inputA := true
-inputB := true
-</code></pre>
-      </div>
-    </div>
-
-    <div class="grid_16 main-description">
-      <hr/>
-    </div>
-
-    <div class="grid_10 main-description">
-      <div class="main-code">
-<pre><code>// Fetch contents of a URL
-// or fail after a 10 seconds countdown.
-val timer = system.time.periodic(1.second)
-  .map(_ => 1)
-  .scanPast(4)(_ - _)
-  .takeWhile(_ >= 0)
-system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
-  .map(_.toString)
-  .until(timer.unreacted)
-  .ivar
-  .orElse("Request failed.")
-  .onEvent { txt =>
-    println(txt.take(512) + "...")
-    main.seal()
-  }
-</code></pre>
-      </div>
-    </div>
-    <div class="grid_6 main-description">
-      <div>
-        <div class="main-items-icon">
-          <img src="/resources/images/icons/view2.png"/>
-        </div>
-      </div>
-      <h2>Declarative</h2>
-      <span>
-        Declarative programming style based on functional value
-        composition yields programs that are more concise and
-        easier to understand.
-      </span>
-    </div>
-
-    <div class="grid_16 main-description">
-      <hr/>
-    </div>
-
-    <div class="grid_6 main-description">
-      <div>
-        <div class="main-items-icon">
-          <img src="/resources/images/icons/parallel.png"/>
-        </div>
-      </div>
-      <h2>Concurrent</h2>
-      <span>
-        Concurrency is achieved by separating
-        event propagations into entities called isolates.
-        Isolates communicate through typed channels.
-      </span>
-    </div>
-    <div class="grid_10 main-description">
-      <div class="main-code">
-<pre><code>// Client asks for the server time
-class TimeServer extends Iso[(String, Channel[Long])] {
-  main.events onMatch {
-    case ("time", response) => response ! System.currentTimeMillis()
-  }
-}
-class Client(server: Channel[(String, Channel[Long])])
-extends Iso[Long] {
-  sysEvents.onMatch {
-    case IsoStarted => server ! ("time", channel)
-  }
-  main.events onEvent {
-    time => println("Server Unix time: " + time)
-  }
-}
-
-val timeServer = system.isolate(Proto[TimeServer])
-val client = system.isolate(Proto[Client](timeServer))
-</code></pre>
-      </div>
-    </div>
-
-    <div class="grid_16 main-description">
-      <hr/>
-    </div>
-
-    <div class="grid_10 main-description">
-      <div class="main-code">
-<pre><code>// Store ranks of a starship crew and establish the rules
-val rank = RMap[String, String]
-rank("Geordie") = "Lieutenant"
-rank("Deanna") = "Lieutenant"
-rank("Data") = "Commander Lieutenant"
-rank("Riker") = "Commander"
-
-val numLt: Events[Int] =
-  rank.react.filter(_._2 == "Lieutenant").size
-val shipRank = new Commutoid[(String, String)] {
-  val zero = ("nobody", "no-rank")
-  val operator = { (x, y) =>
-    if (x._2 < y._2) x else y
-  }
-}
-val commandingOfficer: Events[String] =
-  rank.react.commuteFold(shipRank)
-
-(commandingOfficer zip numLt)((m, n) => (m, n)).onEvent { (m, n) =>
-  println(s"${m._1} says: all $n lieutenants shall mop floors!")
-}
-
-rank("Picard") = "Captain"
-rank("Worf") = "Lieutenant"
-</code></pre>
-      </div>
-    </div>
-    <div class="grid_6 main-description">
-      <div>
-        <div class="main-items-icon">
-          <img src="/resources/images/icons/database7.png"/>
-        </div>
-      </div>
-      <h2>Reactive containers</h2>
-      <span>
-        Reactive data containers contain reactive mutable data.
-        Events are triggered when parts of the dataset change.
-      </span>
-    </div>
-
-    <div class="grid_16 main-description">
-      <hr/>
-    </div>
-
-    <div class="grid_6 main-description">
-      <div>
-        <div class="main-items-icon">
-          <img src="/resources/images/icons/triangular42.png"/>
-        </div>
-      </div>
-      <h2>GC-friendly</h2>
-      <span>
-        Eliminates boxing for primitive values such as integers
-        and doubles.
-        GC pauses were never shorter!
-      </span>
-    </div>
-    <div class="grid_10 main-description">
-      <div class="main-code">
-<pre><code>// No boxing!
-val cell = RCell[Int](0)
-val evens = cell.filter(_ % 2 == 0).to[RSet[Int]]
-val odds = cell.filter(_ % 2 == 1).to[RSet[Int]]
-cell := 1
-cell := 2
-cell := 3
-cell := 4
-(evens union odds).foreach(println)
-</code></pre>
-      </div>
-    </div>
-
-    <div class="grid_16 main-description">
+    <div class="grid_16">
       <hr/>
     </div>
 

@@ -263,6 +263,7 @@ div.main-description div.main-code {
 }
 
 div.main-items-icon {
+  cursor: pointer;
   outline: none;
   display: inline-block;
   width: 46px;
@@ -471,7 +472,7 @@ div.bl {
 }
 
 div.bl:hover {
-  background-color: #f5f5f5;
+  background-color: #ececec;
 }
 
 div.bl a {
@@ -522,7 +523,7 @@ div.bl div.right-edge {
 }
 
 div.bl:hover div.right-edge {
-  border-top: 30px solid #f5f5f5;
+  border-top: 30px solid #ececec;
 }
 
 div.bl div.left-edge {
@@ -539,7 +540,7 @@ div.bl div.left-edge {
 }
 
 div.bl:hover div.left-edge {
-  border-top: 30px solid #f5f5f5;
+  border-top: 30px solid #ececec;
 }
 
 div.bl-download {
@@ -877,4 +878,16 @@ table.docs-tip img {
 
 .slick-current div.main-items-icon img {
   opacity: 0.80;
+}
+
+.story-header {
+  margin-top: 15px;
+}
+
+.talk-title {
+  font-size: 16px;
+}
+
+table.talks-papers > tbody > tr > td {
+  padding: 6px;
 }
