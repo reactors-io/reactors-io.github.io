@@ -35,6 +35,14 @@ layout: projbase
       focusOnSelect: true,
       asNavFor: ".snippet-carousel"
     });
+
+    $("#event-driven-video").on("canplaythrough", function() {
+      this.play();
+    });
+
+    $("#first-class-video").on("canplaythrough", function() {
+      this.play();
+    });
   });
 </script>
 
@@ -115,20 +123,27 @@ layout: projbase
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">Event-driven</h2>
-            <span>
-              Event-driven architecture that
-              ensures a better separation of concerns
-              and improves composition.
-            </span>
-            <div>
-              <video id="event-driven-video" width="200" loop autoplay>
+            <p>
+              Event-driven architecture
+              serves as the basis for
+              distributed computing.
+            </p>
+
+            <p>
+              Events are encapsulated inside entities called event streams.
+              After an event arrives,
+              it gets forwarded to the observers
+              of that event stream.
+            </p>
+            <div class="snippet-animation">
+              <video id="event-driven-video" width="200" loop autoplay="autoplay">
                 <source src="/resources/images/animations/event-driven.mp4" type="video/mp4">
               </video>
             </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// Create an event stream.
+<pre class="lang-scala"><code>// Create an event stream.
 val events = new Events.Emitter[Int]
 
 // Compute sum of events.
@@ -143,9 +158,9 @@ events.on { count += 1 }
 var avg = 0
 events.onDone { avg = sum / count }
 
+// Emit a few events and close the event stream.
 for (i <- List(1, 2, 6)) events.react(i)
 events.unreact()
-
 </code></pre>
             </div>
           </div>
@@ -153,30 +168,40 @@ events.unreact()
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">First-class</h2>
-            <span>
+            <p>
               First-class events streams and signals
-              ensure a better separation of concerns
-              and improve program composition.
-            </span>
+              allow a better separation.
+            </p>
+            <p>
+              Components are expressed as
+              event stream operations,
+              which can be packaged into modules,
+              and later reused and composed.
+            </p>
+            <div class="snippet-animation">
+              <video id="first-class-video" width="200" loop autoplay="autoplay">
+                <source src="/resources/images/animations/first-class.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// Define digital circuits
+<pre class="lang-scala"><code>// Define digital circuits.
 def and(a: Signal[Boolean], b: Signal[Boolean]) =
   (a zip b) { _ && _ }
 def xor(a: Signal[Boolean], b: Signal[Boolean]) =
   (a zip b) { _ ^ _ }
 def halfAdder(a: Signal[Boolean], b: Signal[Boolean]) =
   (xor(a, b), and(a, b))
-def logger(name: String, r: Events[Boolean]) =
+def probe(name: String, r: Events[Boolean]) =
   r.onEvent(v => println(s"$name: $v"))
 
-// Simulate a half-adder
+// Simulate a half-adder.
 val inputA = RCell(false)
 val inputB = RCell(false)
 val (sum, carry) = halfAdder(inputA, inputB)
-logger("sum", sum)
-logger("carry", carry)
+probe("sum", sum)
+probe("carry", carry)
 inputA := true
 inputB := true
 </code></pre>
@@ -186,15 +211,20 @@ inputB := true
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">Declarative</h2>
-            <span>
+            <p>
               Declarative programming style based on functional value
               composition yields programs that are more concise and
               easier to understand.
-            </span>
+            </p>
+            <div class="snippet-animation">
+              <video id="event-driven-video" width="200" loop autoplay="autoplay">
+                <source src="/resources/images/animations/event-driven.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// Fetch contents of a URL
+<pre class="lang-scala"><code>// Fetch contents of a URL
 // or fail after a 10 seconds countdown.
 val timer = system.time.periodic(1.second)
   .map(_ => 1)
@@ -224,7 +254,7 @@ system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// Client asks for the server time
+<pre class="lang-scala"><code>// Client asks for the server time
 class TimeServer extends Iso[(String, Channel[Long])] {
   main.events onMatch {
     case ("time", response) => response ! System.currentTimeMillis()
@@ -256,7 +286,7 @@ val client = system.isolate(Proto[Client](timeServer))
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// Store ranks of a starship crew and establish the rules
+<pre class="lang-scala"><code>// Store ranks of a starship crew and establish the rules
 val rank = RMap[String, String]
 rank("Geordie") = "Lieutenant"
 rank("Deanna") = "Lieutenant"
@@ -295,7 +325,7 @@ rank("Worf") = "Lieutenant"
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre><code>// No boxing!
+<pre class="lang-scala"><code>// No boxing!
 val cell = RCell[Int](0)
 val evens = cell.filter(_ % 2 == 0).to[RSet[Int]]
 val odds = cell.filter(_ % 2 == 1).to[RSet[Int]]
@@ -321,7 +351,7 @@ cell := 4
         </div>
         <div>
           <div class="main-items-icon">
-            <img src="/resources/images/icons/dark18.png"/>
+            <img src="/resources/images/icons/rank-1.png"/>
           </div>
         </div>
         <div>
