@@ -170,7 +170,7 @@ events.unreact()
             <h2 class="story-header">First-class</h2>
             <p>
               First-class events streams and signals
-              allow a better separation.
+              allow a better separation of concerns.
             </p>
             <p>
               Components are expressed as
@@ -212,9 +212,9 @@ inputB := true
           <div class="grid_5">
             <h2 class="story-header">Declarative</h2>
             <p>
-              Declarative programming style based on functional value
-              composition yields programs that are more concise and
-              easier to understand.
+              Declarative programming style based on functional
+              composition produces programs that are more concise, and
+              easy to understand.
             </p>
             <div class="snippet-animation">
               <video id="event-driven-video" width="200" loop autoplay="autoplay">
@@ -224,21 +224,7 @@ inputB := true
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>// Fetch contents of a URL
-// or fail after a 10 seconds countdown.
-val timer = system.time.periodic(1.second)
-  .map(_ => 1)
-  .scanPast(4)(_ - _)
-  .takeWhile(_ >= 0)
-system.net.resource.string("http://www.ietf.org/rfc/rfc1738.txt")
-  .map(_.toString)
-  .until(timer.unreacted)
-  .ivar
-  .orElse("Request failed.")
-  .onEvent { txt =>
-    println(txt.take(512) + "...")
-    main.seal()
-  }
+<pre class="lang-scala"><code>
 </code></pre>
             </div>
           </div>
