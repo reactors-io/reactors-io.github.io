@@ -252,7 +252,7 @@ div.main-description hr {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0)
   );
 }
@@ -864,7 +864,7 @@ table.docs-tip img {
 }
 
 .snippet-nav-carousel {
-  width: 400px;
+  width: 440px;
   margin-left: 215px;
 }
 

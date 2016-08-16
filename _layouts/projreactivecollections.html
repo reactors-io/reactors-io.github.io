@@ -28,7 +28,7 @@ layout: projbase
       asNavFor: ".snippet-nav-carousel"
     });
     $(".snippet-nav-carousel").slick({
-      slidesToShow: 5,
+      slidesToShow: 6,
       slidesToScroll: 1,
       arrows: true,
       centerMode: true,
@@ -119,6 +119,44 @@ layout: projbase
               Event-driven architecture that
               ensures a better separation of concerns
               and improves composition.
+            </span>
+            <div>
+              <video id="event-driven-video" width="200" loop autoplay>
+                <source src="/resources/images/animations/event-driven.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="grid_10">
+            <div class="main-code">
+<pre><code>// Create an event stream.
+val events = new Events.Emitter[Int]
+
+// Compute sum of events.
+var sum = 0
+events.onEvent { x => sum += x }
+
+// Count the events.
+var count = 0
+events.on { count += 1 }
+
+// When done, compute the average.
+var avg = 0
+events.onDone { avg = sum / count }
+
+for (i <- List(1, 2, 6)) events.react(i)
+events.unreact()
+
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="container_16">
+          <div class="grid_5">
+            <h2 class="story-header">First-class</h2>
+            <span>
+              First-class events streams and signals
+              ensure a better separation of concerns
+              and improve program composition.
             </span>
           </div>
           <div class="grid_10">
@@ -276,6 +314,11 @@ cell := 4
       <br/>
 
       <div class="snippet-nav-carousel">
+        <div>
+          <div class="main-items-icon">
+            <img src="/resources/images/icons/dark18.png"/>
+          </div>
+        </div>
         <div>
           <div class="main-items-icon">
             <img src="/resources/images/icons/dark18.png"/>
