@@ -39,7 +39,7 @@ function createEvent() {
 	var imagename = images[Math.floor(Math.random() * images.length)];
 	var css = "position: absolute; " +
 	"top: " + (pathtop + length) + "px; " +
-	"left: " + left + "%;" +
+	"left: calc(" + left + "% + 200px);" +
 	"height: " + height + "px;" +
 	"opacity: 0.0;";
 	ev.setAttribute("style", css);
