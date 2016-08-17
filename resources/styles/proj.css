@@ -881,6 +881,10 @@ table.docs-tip img {
 }
 
 .story-header {
+  font-family: PlayRegular;
+  font-weight: normal;
+  font-size: 31px;
+  color: rgba(70, 70, 70, 0.8);
   margin-top: 15px;
   border-bottom: none;
 }
