@@ -28,7 +28,7 @@ layout: projbase
       asNavFor: ".snippet-nav-carousel"
     });
     $(".snippet-nav-carousel").slick({
-      slidesToShow: 6,
+      slidesToShow: 7,
       slidesToScroll: 1,
       arrows: true,
       centerMode: true,
@@ -43,6 +43,9 @@ layout: projbase
       this.play();
     });
     $("#declarative-video").on("canplaythrough", function() {
+      this.play();
+    });
+    $("#concurrent-video").on("canplaythrough", function() {
       this.play();
     });
   });
@@ -257,39 +260,44 @@ inputB := true
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">Concurrent</h2>
-            <span>
+            <p>
               Concurrency is achieved by separating
-              event propagations into entities called isolates.
-              Isolates communicate through typed channels.
-            </span>
+              event propagations into entities called reactors.
+              Reactors communicate through typed channels.
+            </p>
+            <div class="snippet-animation">
+              <video id="concurrent-video" width="200" loop autoplay="autoplay">
+                <source src="/resources/images/animations/concurrent.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>// Client asks for the server time
-class TimeServer extends Iso[(String, Channel[Long])] {
-  main.events onMatch {
-    case ("time", response) => response ! System.currentTimeMillis()
-  }
-}
-class Client(server: Channel[(String, Channel[Long])])
-extends Iso[Long] {
-  sysEvents.onMatch {
-    case IsoStarted => server ! ("time", channel)
-  }
-  main.events onEvent {
-    time => println("Server Unix time: " + time)
-  }
-}
+<pre class="lang-scala"><code>// The DNS server channel is a globally available server channel
+// that replies with the channel with the requested name.
+val dns: Server[Name, Channel[String]]
 
-val timeServer = system.isolate(Proto[TimeServer])
-val client = system.isolate(Proto[Client](timeServer))
+// Distributed hash table client is a reactor that stores
+// a set of keys into the distributed hash table.
+class DhtClient(val shard: String, val keys: Set[String])
+extends Reactor[Unit] {
+  // Request the channel to the shard from the DNS server.
+  (dns ? shard) onEvent { dht =>
+    // When the channel with the specified name arrives,
+    // send all the keys to that shard.
+    for (k <- keys) dht ! k
+
+    // Close the main channel to terminate the client reactor.
+    main.seal()
+  }
+}
 </code></pre>
             </div>
           </div>
         </div>
         <div class="container_16">
           <div class="grid_5">
-            <h2 class="story-header">Reactive containers</h2>
+            <h2 class="story-header">Reactive collections</h2>
             <span>
               Reactive data containers contain reactive mutable data.
               Events are triggered when parts of the dataset change.
