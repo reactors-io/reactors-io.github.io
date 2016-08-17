@@ -901,10 +901,53 @@ table.talks-papers > tbody > tr > td {
   text-align: center;
 }
 
-.snippet-animation-framed {
-  background-color: #000;
+.snippet-animation-frame {
   display: inline-block;
-  border: 1px solid #ccc;
+  background-color: #000;
+}
+
+.paper-frame {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
   border-radius: 0px;
-  box-shadow: 0px 2px 6px #777;
+  box-shadow: 0px 4px 8px #777;
+}
+
+.flat-frame {
+  border: 1px solid #f0f0f0;
+  background-color: #f0f0f0;
+}
+
+.text-snippet {
+  margin: 5px;
+}
+
+.punchline {
+  font-family: PlayRegular;
+  font-size: 36px;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(200, 200, 200, 0.9);
+  color: rgba(100, 100, 100, 0.9);
+  z-index: 10;
+}
+
+.subpunchline {
+  font-family: PlayRegular;
+  font-size: 23px;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(200, 200, 200, 0.9);
+  color: rgba(100, 100, 100, 0.8);
+  z-index: 10;
+}
+
+.subpunchline-frp {
+  color: rgba(160, 0, 120, 0.6);
+}
+
+.subpunchline-actor {
+  color: rgba(160, 20, 0, 0.6);
+}
+
+.frontends {
+  text-align: center;
 }

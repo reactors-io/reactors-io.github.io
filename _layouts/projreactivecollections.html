@@ -97,16 +97,16 @@ layout: projbase
       <div class="right-edge"></div>
     </div>
     <div class="bl bl-tutorial">
-      <a href='http://reactors.io/tutorialdocs/reactors/'>
+      <a href="http://reactors.io/tutorialdocs/reactors/">
         Getting started guide
-        <img src='/resources/images/icons/graduation20-gray.png' height='14px'/>
+        <img src="/resources/images/icons/graduation20-gray.png" height="14px"/>
       </a>
       <div class="left-edge"></div>
     </div>
     <div class="bl bl-docs">
-      <a href='http://storm-enroute.com/apidocs/reactors/{{ site.reactors_version }}/api'>
+      <a href="http://storm-enroute.com/apidocs/reactors/{{ site.reactors_version }}/api">
         API docs
-        <img src='/resources/images/icons/open161-gray.png' height='14px'/>
+        <img src="/resources/images/icons/open161-gray.png" height="14px"/>
       </a>
       <div class="left-edge"></div>
     </div>
@@ -122,10 +122,72 @@ layout: projbase
   <br/>
   <br/>
   <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 
   <div id="main" class="container_16">
 
+    <div class="grid_1">
+      &nbsp;
+    </div>
+    <div class="grid_7">
+      <span class="punchline">
+        Actors done right
+      </span>
+      <br/>
+      <span class="subpunchline">
+        Reactors.IO fuses
+        the best parts of
+        <span class="subpunchline-frp">functional reactive programming</span>
+        and the
+        <span class="subpunchline-actor">actor model</span>
+      </span>
+      <br/>
+      <br/>
+      <div class="frontends">
+        <img height="48px" src="/resources/images/scala-grey.png"/>
+        <img height="48px" src="/resources/images/java-grey.png"/>
+      </div>
+    </div>
+    <div class="grid_6">
+      <div class="text-snippet">
+        <p>
+          Reactors.IO is a framework
+          for building distributed systems.
+          It combines the strengths of functional reactive programming
+          and classical actor systems to provide
+          a next generation foundation for distributed computing.
+        </p>
+
+        <p>
+          Primarily targetting the JVM,
+          the Reactors framework has bindings
+          for both Java and Scala.
+          More coming soon!
+        </p>
+
+        <p>
+          To learn more,
+          see the quick tour of features below,
+          take a look at the <a href="/learn/">documentation section</a>
+          or check out our
+          <a href="http://reactors.io/tutorialdocs/reactors/">Getting Started Guide</a>.
+        </p>
+      </div>
+    </div>
+    <div class="grid_2">
+      &nbsp;
+    </div>
+
     <div class="grid_16 main-description">
+      <br/>
+      <br/>
+      <br/>
       <hr/>
     </div>
 
@@ -306,7 +368,7 @@ system.spawn(Proto[DhtClient](shard, keys))
             <h2 class="story-header">Reactive collections</h2>
             <p>
               Incremental data structures produce events when they are mutated.
-              Clients can subscribe to changes in specific segments of the dataset.
+              Clients can selectively track incremental changes.
             </p>
             <div class="snippet-animation">
               <video id="reactive-collections-video" width="200" loop autoplay="autoplay">
@@ -347,8 +409,8 @@ map("master") = masterChannel
               GC pauses were never shorter!
             </p>
             <div class="snippet-animation">
-              <div class="snippet-animation-framed">
-                <video style="display: block;" id="gc-friendly-video" width="240px" loop autoplay="autoplay">
+              <div class="snippet-animation-frame paper-frame">
+                <video style="display: block;" id="gc-friendly-video" width="220px" loop autoplay="autoplay">
                   <source src="/resources/images/animations/gc-friendly.mp4" type="video/mp4">
                 </video>
               </div>
@@ -401,7 +463,7 @@ cell := 4
         </div>
         <div>
           <div class="main-items-icon">
-            <img src="/resources/images/icons/parallel.png"/>
+            <img src="/resources/images/icons/crossed-arrows.png"/>
           </div>
         </div>
         <div>
@@ -420,10 +482,34 @@ cell := 4
     <div class="container_16">
       <div class="grid_16 main-description">
         <hr/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
-      <div class="grid_16">
+
+      <div class="grid_6">
+        <p>
           And does all this work?
           It sure does.
+        </p>
+        <p>
+        The Reactors.IO framework was used
+        to implement a real-time 3D engine prototype.
+        </p>
+      </div>
+
+      <div class="grid_10">
+        <div class="snippet-animation-frame paper-frame">
+          <iframe width="640" height="400" src="https://www.youtube.com/embed/ebbrAHNsexc?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="grid_16 main-description">
+        <br/>
+        <br/>
       </div>
     </div>
 
