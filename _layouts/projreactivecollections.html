@@ -176,7 +176,7 @@ events.unreact()
               Components are expressed as
               event stream operations,
               which can be packaged into modules,
-              and later reused and composed.
+              and later reused or further composed.
             </p>
             <div class="snippet-animation">
               <video id="first-class-video" width="200" loop autoplay="autoplay">
@@ -216,15 +216,38 @@ inputB := true
               composition produces programs that are more concise, and
               easy to understand.
             </p>
+            <p>
+              An event stream is treated similarly
+              to a Scala collection or Java Stream -
+              plethora of functional combinators
+              unlocks a rich set of behaviors.
+            </p>
             <div class="snippet-animation">
-              <video id="event-driven-video" width="200" loop autoplay="autoplay">
+              <video id="declarative-video" width="200" loop autoplay="autoplay">
                 <source src="/resources/images/animations/event-driven.mp4" type="video/mp4">
               </video>
             </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>
+<pre class="lang-scala"><code>class DistributedHashTable[K] {
+  val sockets = for (i <- 0 until SHARD_NUM) yield newSocket(ip(i))
+  val sharding = (k: K) => k.## % SHARD_NUM
+
+  // Group events into shards, batch them, and send to sockets.
+  val insertions = new Events.Emitter[K]
+  insertions.groupBy(sharding)
+    .map {
+      case (k, events) => events.batch(16).map((k, _))
+    }
+    .flatten
+    .onMatch {
+      case (k, batch) => sockets(k).write(batch)
+    }
+
+  // Send the key to the insertions stream.
+  def insert(k: K): Unit = insertions.react(k)
+}
 </code></pre>
             </div>
           </div>
