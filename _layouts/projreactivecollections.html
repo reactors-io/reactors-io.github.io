@@ -51,6 +51,9 @@ layout: projbase
     $("#reactive-collections-video").on("canplaythrough", function() {
       this.play();
     });
+    $("#gc-friendly-video").on("canplaythrough", function() {
+      this.play();
+    });
   });
 </script>
 
@@ -338,23 +341,39 @@ map("master") = masterChannel
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">GC-friendly</h2>
-            <span>
+            <p>
               Eliminates boxing for primitive values such as integers
               and doubles.
               GC pauses were never shorter!
-            </span>
+            </p>
+            <div class="snippet-animation">
+              <div class="snippet-animation-framed">
+                <video style="display: block;" id="gc-friendly-video" width="240px" loop autoplay="autoplay">
+                  <source src="/resources/images/animations/gc-friendly.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
 <pre class="lang-scala"><code>// No boxing!
-val cell = RCell[Int](0)
-val evens = cell.filter(_ % 2 == 0).to[RSet[Int]]
-val odds = cell.filter(_ % 2 == 1).to[RSet[Int]]
+class Counter extends Reactor[Int] {
+  var count = 0
+  main.events.on(count += 1)
+}
+
+// Start a counter reactor instance.
+val ch = system.spawn(Proto[Counter])
+
+// Forward cell values to the counter.
+val cell = RCell(0)
+cell onEvent {
+  x => ch ! x
+}
 cell := 1
 cell := 2
 cell := 3
 cell := 4
-(evens union odds).foreach(println)
 </code></pre>
             </div>
           </div>

@@ -900,3 +900,11 @@ table.talks-papers > tbody > tr > td {
 .snippet-animation {
   text-align: center;
 }
+
+.snippet-animation-framed {
+  background-color: #000;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  box-shadow: 0px 2px 6px #777;
+}
