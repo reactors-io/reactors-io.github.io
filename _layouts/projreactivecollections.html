@@ -39,8 +39,10 @@ layout: projbase
     $("#event-driven-video").on("canplaythrough", function() {
       this.play();
     });
-
     $("#first-class-video").on("canplaythrough", function() {
+      this.play();
+    });
+    $("#declarative-video").on("canplaythrough", function() {
       this.play();
     });
   });
@@ -188,9 +190,9 @@ events.unreact()
             <div class="main-code">
 <pre class="lang-scala"><code>// Define digital circuits.
 def and(a: Signal[Boolean], b: Signal[Boolean]) =
-  (a zip b) { _ && _ }
+  (a zip b)(_ && _)
 def xor(a: Signal[Boolean], b: Signal[Boolean]) =
-  (a zip b) { _ ^ _ }
+  (a zip b)(_ ^ _)
 def halfAdder(a: Signal[Boolean], b: Signal[Boolean]) =
   (xor(a, b), and(a, b))
 def probe(name: String, r: Events[Boolean]) =
@@ -220,29 +222,29 @@ inputB := true
               An event stream is treated similarly
               to a Scala collection or Java Stream -
               plethora of functional combinators
-              unlocks a rich set of behaviors.
+              unlock a rich set of behaviors.
             </p>
             <div class="snippet-animation">
               <video id="declarative-video" width="200" loop autoplay="autoplay">
-                <source src="/resources/images/animations/event-driven.mp4" type="video/mp4">
+                <source src="/resources/images/animations/declarative.mp4" type="video/mp4">
               </video>
             </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
 <pre class="lang-scala"><code>class DistributedHashTable[K] {
-  val sockets = for (i <- 0 until SHARD_NUM) yield newSocket(ip(i))
+  val channels = for (i <- 0 until SHARD_NUM) yield channelFor(i)
   val sharding = (k: K) => k.## % SHARD_NUM
 
-  // Group events into shards, batch them, and send to sockets.
+  // Group events into shards, batch them, and send to channels.
   val insertions = new Events.Emitter[K]
   insertions.groupBy(sharding)
     .map {
-      case (k, events) => events.batch(16).map((k, _))
+      case (k, events) => events.batch(4).map((k, _))
     }
     .flatten
     .onMatch {
-      case (k, batch) => sockets(k).write(batch)
+      case (k, batch) => channels(k) ! batch
     }
 
   // Send the key to the insertions stream.
