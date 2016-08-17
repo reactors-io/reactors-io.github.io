@@ -274,7 +274,7 @@ inputB := true
           <div class="grid_10">
             <div class="main-code">
 <pre class="lang-scala"><code>// The DNS server channel is a globally available server channel
-// that replies with the channel with the requested name.
+// that responds to requests for a channel with the specified name.
 val dns: Server[Name, Channel[String]]
 
 // Distributed hash table client is a reactor that stores
@@ -305,30 +305,7 @@ extends Reactor[Unit] {
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>// Store ranks of a starship crew and establish the rules
-val rank = RMap[String, String]
-rank("Geordie") = "Lieutenant"
-rank("Deanna") = "Lieutenant"
-rank("Data") = "Commander Lieutenant"
-rank("Riker") = "Commander"
-
-val numLt: Events[Int] =
-  rank.react.filter(_._2 == "Lieutenant").size
-val shipRank = new Commutoid[(String, String)] {
-  val zero = ("nobody", "no-rank")
-  val operator = { (x, y) =>
-    if (x._2 < y._2) x else y
-  }
-}
-val commandingOfficer: Events[String] =
-  rank.react.commuteFold(shipRank)
-
-(commandingOfficer zip numLt)((m, n) => (m, n)).onEvent { (m, n) =>
-  println(s"${m._1} says: all $n lieutenants shall mop floors!")
-}
-
-rank("Picard") = "Captain"
-rank("Worf") = "Lieutenant"
+<pre class="lang-scala"><code>
 </code></pre>
             </div>
           </div>
