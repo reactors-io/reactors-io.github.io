@@ -9,7 +9,7 @@ permalink: /contribute/index.html
 
 
 
-## Bug Reports
+### Bug Reports
 
 Please submit bug reports and feature requests at our
 [issue tracker at GitHub](https://github.com/reactors-io/reactors/issues).
@@ -34,7 +34,7 @@ This has several advantages:
 And feel free to submit a patch yourself! :)
 
 
-## Pull Requests
+### Pull Requests
 
 Feeling like contributing with some code?
 Reactors.IO source code is available at
