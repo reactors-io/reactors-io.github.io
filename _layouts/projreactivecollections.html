@@ -48,6 +48,9 @@ layout: projbase
     $("#concurrent-video").on("canplaythrough", function() {
       this.play();
     });
+    $("#reactive-collections-video").on("canplaythrough", function() {
+      this.play();
+    });
   });
 </script>
 
@@ -235,9 +238,9 @@ inputB := true
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>class DistributedHashTable[K] {
-  val channels = for (i <- 0 until SHARD_NUM) yield channelFor(i)
-  val sharding = (k: K) => k.## % SHARD_NUM
+<pre class="lang-scala"><code>// Stores a set of keys across distributed shards.
+class DistributedHashTable[K](val channels: Set[Channel[K]]) {
+  val sharding = (k: K) => k.## % channels.size
 
   // Group events into shards, batch them, and send to channels.
   val insertions = new Events.Emitter[K]
@@ -277,20 +280,20 @@ inputB := true
 // that responds to requests for a channel with the specified name.
 val dns: Server[Name, Channel[String]]
 
-// Distributed hash table client is a reactor that stores
-// a set of keys into the distributed hash table.
+// Reactor that sends a set of keys to a shard.
 class DhtClient(val shard: String, val keys: Set[String])
 extends Reactor[Unit] {
   // Request the channel to the shard from the DNS server.
   (dns ? shard) onEvent { dht =>
-    // When the channel with the specified name arrives,
-    // send all the keys to that shard.
+    // Use the channel to send all the keys.
     for (k <- keys) dht ! k
-
-    // Close the main channel to terminate the client reactor.
-    main.seal()
   }
 }
+
+// Start the client reactor.
+val shard = "shard04"
+val keys = Set("key1", "key2", "key3")
+system.spawn(Proto[DhtClient](shard, keys))
 </code></pre>
             </div>
           </div>
@@ -298,14 +301,36 @@ extends Reactor[Unit] {
         <div class="container_16">
           <div class="grid_5">
             <h2 class="story-header">Reactive collections</h2>
-            <span>
-              Reactive data containers contain reactive mutable data.
-              Events are triggered when parts of the dataset change.
-            </span>
+            <p>
+              Incremental data structures produce events when they are mutated.
+              Clients can subscribe to changes in specific segments of the dataset.
+            </p>
+            <div class="snippet-animation">
+              <video id="reactive-collections-video" width="200" loop autoplay="autoplay">
+                <source src="/resources/images/animations/reactive-collections.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
           <div class="grid_10">
             <div class="main-code">
-<pre class="lang-scala"><code>
+<pre class="lang-scala"><code>// Create a reactive map with channels.
+val channels = RHashMap[String, Channel[String]]
+
+// When any channel is inserted, send it a greeting message.
+channels.inserts onEvent { k =>
+  channels(k) ! "ping"
+}
+
+// When a master channel is inserted, register as worker.
+channels.at("master") onEvent { ch =>
+  ch ! "worker"
+}
+
+// Add a worker channel.
+map("worker") = workerChannel
+
+// Add a master channel.
+map("master") = masterChannel
 </code></pre>
             </div>
           </div>
