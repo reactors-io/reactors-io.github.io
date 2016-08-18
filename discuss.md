@@ -21,6 +21,13 @@ You can find the Reactors.IO mailing list at
 [Google Groups](https://groups.google.com/forum/#!forum/reactors-io).
 
 
+### Gitter
+
+Gitter is a great option to start lively chats and discussions.
+
+[![Join the chat at https://gitter.im/reactors-io/reactors](https://badges.gitter.im/reactors-io/reactors.svg)](https://gitter.im/reactors-io/reactors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
 ### GitHub
 
 Concrete technical discussion about the codebase itself is very welcome.
@@ -29,14 +36,6 @@ Please use our official repositories at GitHub!
 <a href="https://github.com/reactors-io/reactors">
   <img class="hoverimage" src="/resources/images/github_32.png" />
 </a>
-
-
-### Gitter
-
-Gitter is a great option to start lively chats and discussions.
-
-[![Join the chat at https://gitter.im/reactors-io/reactors](https://badges.gitter.im/reactors-io/reactors.svg)](https://gitter.im/reactors-io/reactors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 
 ### Social 
