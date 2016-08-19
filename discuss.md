@@ -36,6 +36,7 @@ Please use our official repositories at GitHub!
 <a href="https://github.com/reactors-io/reactors">
   <img class="hoverimage" src="/resources/images/github_32.png" />
 </a>
+<a class="github-button" href="https://github.com/reactors-io/reactors" data-icon="octicon-star" data-style="mega" data-count-href="/reactors-io/reactors/stargazers" data-count-api="/repos/reactors-io/reactors#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star reactors-io/reactors on GitHub">Star</a>
 
 
 ### Social 
