@@ -41,18 +41,22 @@ or add Reactors.IO to your SBT file as a managed dependency.
 To add Reactors.IO to you project,
 add the following lines to your SBT build definition file (e.g. `build.sbt`):
 
-    resolvers ++= Seq(
-      "Sonatype OSS Snapshots" at
-        "https://oss.sonatype.org/content/repositories/snapshots",
-      "Sonatype OSS Releases" at
-        "https://oss.sonatype.org/content/repositories/releases"
-    )
+```scala
+resolvers ++= Seq(
+  "Sonatype OSS Snapshots" at
+    "https://oss.sonatype.org/content/repositories/snapshots",
+  "Sonatype OSS Releases" at
+    "https://oss.sonatype.org/content/repositories/releases"
+)
 
-    libraryDependencies ++= Seq(
-      "com.storm-enroute" %% "reactors" % "{{ site.reactors_version }}")
+libraryDependencies ++= Seq(
+  "com.storm-enroute" %% "reactors" % "{{ site.reactors_version }}")
+```
 
 If you want to live on the cutting edge,
 you can use the nightly snapshot by adding the following line instead:
 
-    libraryDependencies ++= Seq(
-      "com.storm-enroute" %% "reactors" % "{{ site.reactors_snapshot_version }}")
+```scala
+libraryDependencies ++= Seq(
+  "com.storm-enroute" %% "reactors" % "{{ site.reactors_snapshot_version }}"
+```
