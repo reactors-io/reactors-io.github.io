@@ -123,7 +123,7 @@ the Reactors.IO framework.
 
 ## Benchmarks
 
-Dashboards with benchmark data are run and updated automatically:
+Dashboards with benchmark data are updated automatically:
 
 - [Metabase dashboard](http://ci.storm-enroute.com:3000/dash/1)
 
