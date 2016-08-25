@@ -76,7 +76,7 @@ which can comply to that standard.
 
 **Long answer:**
 
-No, Reactors.IO do not implement the Reactive Streams standard.
+No, Reactors.IO does not implement the Reactive Streams standard.
 Reactors.IO is not a concurrent streaming processing framework,
 it is an actor framework. Incidentally, inside each "reactor",
 there are single-threaded event streams
