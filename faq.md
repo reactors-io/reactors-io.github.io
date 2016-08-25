@@ -66,6 +66,14 @@ just like you did before.
 
 ### Does Reactors.IO implement the Reactive Streams standard?
 
+**Short answer:**
+
+Reactors.IO is an actor framework, not a streaming framework, so no.
+You could use Reactors.IO to implement a streaming framework,
+which can comply to that standard.
+
+**Long answer:**
+
 No, Reactors.IO do not implement the Reactive Streams standard.
 Reactors.IO is not a concurrent streaming processing framework,
 it is an actor framework. Incidentally, inside each "reactor",
@@ -126,6 +134,12 @@ in a similar way that Akka was used to implement Akka Streams.
 
 
 ### Akka Streams needed automatic backpressure, does Reactors have it?
+
+**Short answer:**
+
+Not by default, because it is not required.
+
+**Long answer:**
 
 Backpressure was a concern for Akka Streams because stream processing is distributed
 across different concurrency units. Here backpressure prevents an upstream
