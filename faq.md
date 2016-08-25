@@ -8,8 +8,6 @@ permalink: /faq/index.html
 ---
 
 
-## Frequently Asked Questions
-
 This sections covers some of the frequently asked questions about Reactors.IO.
 Some of these questions were frequently raised on social media and mailing lists,
 for others, we felt that they are important to address here.
