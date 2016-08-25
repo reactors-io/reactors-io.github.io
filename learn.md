@@ -13,8 +13,9 @@ Here you can find various documentation sources for the Reactors framework.
 
 ## Guides and tutorials
 
-The following step-by-step guide explains the concepts in the framework in detail,
-and it is the best way to get started:
+The Reactors.IO step-by-step guide explains the concepts in the framework in detail.
+It is the best way to get started.
+There is also the FAQ section, which quickly covers some important concepts.
 
 - [Reactors.IO Guide](http://reactors.io/tutorialdocs/reactors/)
 - [Frequently asked questions](/faq/)
