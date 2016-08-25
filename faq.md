@@ -68,8 +68,10 @@ just like you did before.
 
 **Short answer:**
 
-Reactors.IO is an actor framework, not a streaming framework, so no.
-You could use Reactors.IO to implement a streaming framework,
+Reactors.IO is an actor framework, not a streaming framework,
+so it has no concept of concurrent stream processing.
+However,
+you could use Reactors.IO to implement a streaming framework,
 which can comply to that standard.
 
 **Long answer:**
