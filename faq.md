@@ -15,6 +15,55 @@ Some of these questions were frequently raised on social media and mailing lists
 for others, we felt that they are important to address here.
 
 
+### Can I still write my traditional actor programs?
+
+Yes.
+the reactor programming model generalizes the traditional actor model.
+This means that all the programs representable in the actor model
+must be representable with reactors.
+
+Here is an example in Scala
+(bindings for Java also exist).
+We declare the `LegacyActor` that can receive events of any type.
+We then use its main event source to listen for incoming events,
+and match based on the event type.
+If we receive an integer, we print it,
+and if we receive a string `"terminate"`,
+we terminate the reactor by sealing its event source.
+This is shown in the following:
+
+```scala
+class LegacyActor extends Reactor[Any] {
+  main.events onMatch {
+    case n: Int => println("Number " + n)
+    case "terminate" => main.seal()
+  }
+}
+```
+
+Above `Reactor[Any]` is an equivalent of a traditional actor,
+and `main.events` is the equivalent of a traditional `receive` statement.
+To start an instance of this reactor:
+
+```scala
+val ch: Channel[Any] = system.spawn(Proto[LegacyActor])
+```
+
+The channel returned by `spawn` is the alternative
+of the **actor reference** (also called **process ID**)
+We can use it to send messages to the reactor,
+just like in the actor model:
+
+```scala
+ch ! "terminate"
+```
+
+If you do this, you will not benefit from the composability and type-safety
+that the Reactors.IO framework has to offer,
+but you will be able to write all your legacy actor programs
+just like you did before.
+
+
 ### Does Reactors.IO implement the Reactive Streams standard?
 
 No, Reactors.IO do not implement the Reactive Streams standard.
@@ -76,7 +125,7 @@ a Reactive Streams-compliant stream processing framework,
 in a similar way that Akka was used to implement Akka Streams.
 
 
-### A requirement for Akka Streams was automatic backpressure, does Reactors have it?
+### Akka Streams needed automatic backpressure, does Reactors have it?
 
 Backpressure was a concern for Akka Streams because stream processing is distributed
 across different concurrency units. Here backpressure prevents an upstream
