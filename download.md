@@ -8,8 +8,6 @@ permalink: /download/index.html
 ---
 
 
-
-
 Reactors.IO is hosted on Sonatype OSSRH.
 You can download the JAR directly,
 or add Reactors.IO to your SBT file as a managed dependency.
