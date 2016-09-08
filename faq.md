@@ -180,8 +180,8 @@ The `Producer` reactor could be too fast, and overflow the second reactor.
 In this case, backpressure is necessary (although note, that a similar problem exists
 in classical actor systems, and that they don't give much to solve the problem for you -
 you need to implement backpressure itself).
+
 The good thing is, it is fairly straightforward to implement a `BackPressureChannel`
 in the Reactors framework, which, when established between two reactors,
 always ensures that the `Producer` does not overflow the `Consumer`.
-At the time of writing, this facility is planned to be included in the
-`io.reactors.protocol` package.
+Such a modular protocol is included in the `io.reactors.protocol` package.
