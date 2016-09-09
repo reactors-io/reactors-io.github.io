@@ -901,6 +901,10 @@ table.talks-papers > tbody > tr > td {
   border-bottom: 1px solid #e6e6e6;
 }
 
+pre.prettyprint li {
+  border-bottom: 1px solid #e6e6e6;
+}
+
 .snippet-animation {
   text-align: center;
 }
