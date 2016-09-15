@@ -30,7 +30,7 @@ Gitter is a great option to start lively chats and discussions.
 
 ### GitHub
 
-Concrete technical discussion about the codebase itself is very welcome.
+Concrete technical discussion related to the codebase itself is very welcome.
 Please use our official repositories at GitHub!
 
 <a href="https://github.com/reactors-io/reactors">
