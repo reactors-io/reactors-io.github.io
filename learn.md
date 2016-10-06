@@ -25,6 +25,7 @@ There is also the FAQ section, which quickly covers some important concepts.
 
 Below you can find ScalaDoc API documentation for specific Reactors.IO versions:
 
+- [Reactors.IO 0.7 API](http://storm-enroute.com/apidocs/reactors/0.7/api)
 - [Reactors.IO 0.6 API](http://storm-enroute.com/apidocs/reactors/0.6/api)
 - [Reactors.IO 0.5 API](http://storm-enroute.com/apidocs/reactive-collections/0.5/api)
 - [Reactors.IO 0.4 API](http://storm-enroute.com/apidocs/reactive-collections/0.4/api)
