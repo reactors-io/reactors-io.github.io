@@ -918,7 +918,7 @@ pre.prettyprint li {
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 0px;
-  box-shadow: 0px 4px 8px #777;
+  box-shadow: 0px 4px 4px #888;
 }
 
 .flat-frame {
