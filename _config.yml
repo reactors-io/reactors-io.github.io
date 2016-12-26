@@ -4,5 +4,5 @@ description: Docs and resources for Reactors.IO
 url: http://reactors.io
 baseUrl: http://reactors.io
 relative_permalinks: false
-reactors_version: 0.7
-reactors_snapshot_version: 0.8-SNAPSHOT
+reactors_version: 0.8
+reactors_snapshot_version: 0.9-SNAPSHOT

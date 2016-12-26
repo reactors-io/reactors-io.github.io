@@ -138,6 +138,8 @@ in a similar way that Akka was used to implement Akka Streams.
 **Short answer:**
 
 Not by default, because it is not required.
+But backpressure is provided in the
+[`reactors-protocol` module](https://github.com/reactors-io/reactors/blob/master/reactors-protocol/shared/src/main/scala/io/reactors/protocol/backpressure-protocols.scala).
 
 **Long answer:**
 
@@ -184,4 +186,5 @@ you need to implement backpressure itself).
 The good thing is, it is fairly straightforward to implement a `BackPressureChannel`
 in the Reactors framework, which, when established between two reactors,
 always ensures that the `Producer` does not overflow the `Consumer`.
-Such a modular protocol is included in the `io.reactors.protocol` package.
+Such a modular protocol is included in the
+[`io.reactors.protocol` package](https://github.com/reactors-io/reactors/blob/master/reactors-protocol/shared/src/main/scala/io/reactors/protocol/backpressure-protocols.scala).
