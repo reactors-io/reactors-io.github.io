@@ -128,6 +128,6 @@ the Reactors.IO framework.
 
 Dashboards with benchmark data are updated automatically:
 
-- [Metabase dashboard](http://ci.storm-enroute.com:3000/dash/1)
+- [ScalaMeter report](http://reactors.io/benchmarks/reactors/report/)
 
 <br/>
