@@ -151,7 +151,7 @@ h3 {
 
 #top {
   background-repeat: repeat-x;
-  height: 44px;
+  height: 54px;
   /*box-shadow: 0px 4px 8px #000;*/
   /*background-image: url('/resources/images/header-modern.png');*/
   background-color: #efefef;
@@ -163,7 +163,7 @@ h3 {
 form.horizsearch {
   float: right;
   position: relative;
-  margin-top: 10px;
+  margin-top: 14px;
   text-decoration: none;
   background: transparent;
   width: 160px;
@@ -196,12 +196,12 @@ form.horizsearch input:focus {
 }
 
 ul.topmenu {
-  height: 44px;
+  height: 54px;
   padding-left: 0px;
 }
 
 li.topelement {
-  height: 44px;
+  height: 54px;
   margin-right: 0px;
   margin-left: 0px;
   padding: 0px;
@@ -212,7 +212,7 @@ li.topzero {
 }
 
 li.topelement a {
-  line-height: 44px;
+  line-height: 54px;
   margin: 0px;
   padding: 0px;
   margin-right: 12px;
@@ -343,8 +343,8 @@ ul.horizmenu li.topbutton a {
 }
 
 ul.horizmenu li.logo {
-  margin-top: 2px;
-  height: 42px;
+  margin-top: 6px;
+  height: 48px;
   background-color: #efefef;
   /*text-shadow: 0px -1px 0px #000;*/
 }
